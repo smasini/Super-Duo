@@ -7,13 +7,13 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.CursorLoader;
 import android.support.v4.content.Loader;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import it.jaschke.alexandria.api.BookListAdapter;
 import it.jaschke.alexandria.api.Callback;
@@ -62,6 +62,8 @@ public class ListOfBooks extends Fragment implements LoaderManager.LoaderCallbac
         );
 
         bookList = (ListView) rootView.findViewById(R.id.listOfBooks);
+        TextView empty = (TextView) rootView.findViewById(R.id.textview_empty_view);
+        bookList.setEmptyView(empty);
         bookList.setAdapter(bookListAdapter);
 
         bookList.setOnItemClickListener(new AdapterView.OnItemClickListener() {

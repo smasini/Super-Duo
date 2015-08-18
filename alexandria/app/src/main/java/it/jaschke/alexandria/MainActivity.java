@@ -62,10 +62,8 @@ public class MainActivity extends ActionBarActivity implements NavigationDrawerF
 
     @Override
     public void onNavigationDrawerItemSelected(int position) {
-
         FragmentManager fragmentManager = getSupportFragmentManager();
         Fragment nextFragment;
-
         switch (position){
             default:
             case 0:
@@ -79,7 +77,6 @@ public class MainActivity extends ActionBarActivity implements NavigationDrawerF
                 break;
 
         }
-
         fragmentManager.beginTransaction()
                 .replace(R.id.container, nextFragment)
                 .addToBackStack((String) title)
