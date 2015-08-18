@@ -31,7 +31,8 @@ public class AddBook extends Fragment implements LoaderManager.LoaderCallbacks<C
     private final String EAN_CONTENT="eanContent";
     private static final String SCAN_FORMAT = "scanFormat";
     private static final String SCAN_CONTENTS = "scanContents";
-
+    private boolean mUseScan = false;
+    private String mEanString = "";
     private String mScanFormat = "Format:";
     private String mScanContents = "Contents:";
 
@@ -130,14 +131,16 @@ public class AddBook extends Fragment implements LoaderManager.LoaderCallbacks<C
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == 0) {
-            String ean = data.getStringExtra("SCAN_RESULT");
+            mEanString = data.getStringExtra("SCAN_RESULT");
             String format = data.getStringExtra("SCAN_RESULT_FORMAT");
             if(format.equals("EAN_13")){
+                mUseScan = true;
+                //Once we have an ISBN, start a book intent
                 Intent bookIntent = new Intent(getActivity(), BookService.class);
-                bookIntent.putExtra(BookService.EAN, ean);
+                bookIntent.putExtra(BookService.EAN, mEanString);
                 bookIntent.setAction(BookService.FETCH_BOOK);
                 getActivity().startService(bookIntent);
-                AddBook.this.restartLoader();
+                this.restartLoader();
             }
         }
     }
@@ -148,16 +151,18 @@ public class AddBook extends Fragment implements LoaderManager.LoaderCallbacks<C
 
     @Override
     public android.support.v4.content.Loader<Cursor> onCreateLoader(int id, Bundle args) {
-        if(ean.getText().length()==0){
-            return null;
-        }
-        String eanStr= ean.getText().toString();
-        if(eanStr.length()==10 && !eanStr.startsWith("978")){
-            eanStr="978"+eanStr;
+        if(!mUseScan){
+            if (ean.getText().length() == 0) {
+                return null;
+            }
+            mEanString = ean.getText().toString();
+            if (mEanString.length() == 10 && !mEanString.startsWith("978")) {
+                mEanString = "978" + mEanString;
+            }
         }
         return new CursorLoader(
                 getActivity(),
-                AlexandriaContract.BookEntry.buildFullBookUri(Long.parseLong(eanStr)),
+                AlexandriaContract.BookEntry.buildFullBookUri(Long.parseLong(mEanString)),
                 null,
                 null,
                 null,
@@ -207,6 +212,8 @@ public class AddBook extends Fragment implements LoaderManager.LoaderCallbacks<C
         rootView.findViewById(R.id.bookCover).setVisibility(View.INVISIBLE);
         rootView.findViewById(R.id.save_button).setVisibility(View.INVISIBLE);
         rootView.findViewById(R.id.delete_button).setVisibility(View.INVISIBLE);
+        mUseScan = false;
+        mEanString = "";
     }
 
     @Override
