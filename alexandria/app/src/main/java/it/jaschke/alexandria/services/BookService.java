@@ -144,7 +144,7 @@ public class BookService extends IntentService {
         }
         if(bookJsonString==null){
             Intent messageIntent = new Intent(MainActivity.MESSAGE_EVENT);
-            messageIntent.putExtra(MainActivity.MESSAGE_KEY, "Internet Error");
+            messageIntent.putExtra(MainActivity.MESSAGE_KEY, getString(R.string.internet_error_message));
             LocalBroadcastManager.getInstance(getApplicationContext()).sendBroadcast(messageIntent);
             return;
         }

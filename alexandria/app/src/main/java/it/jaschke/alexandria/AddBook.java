@@ -26,17 +26,17 @@ import it.jaschke.alexandria.services.DownloadImage;
 
 
 public class AddBook extends Fragment implements LoaderManager.LoaderCallbacks<Cursor> {
-    private static final String TAG = "INTENT_TO_SCAN_ACTIVITY";
+    //private static final String TAG = "INTENT_TO_SCAN_ACTIVITY";
     private EditText ean;
     private final int LOADER_ID = 1;
     private View rootView;
-    private final String EAN_CONTENT="eanContent";
-    private static final String SCAN_FORMAT = "scanFormat";
-    private static final String SCAN_CONTENTS = "scanContents";
+    private final String EAN_CONTENT = "eanContent";
+    //private static final String SCAN_FORMAT = "scanFormat";
+    //private static final String SCAN_CONTENTS = "scanContents";
     private boolean mUseScan = false;
     private String mEanString = "";
-    private String mScanFormat = "Format:";
-    private String mScanContents = "Contents:";
+    //private String mScanFormat = "Format:";
+    //private String mScanContents = "Contents:";
 
 
 
@@ -108,15 +108,15 @@ public class AddBook extends Fragment implements LoaderManager.LoaderCallbacks<C
             @Override
             public void onClick(View view) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-                builder.setMessage("Conferma salvataggio")
-                        .setTitle("Salva")
-                        .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                builder.setMessage(getString(R.string.text_alert_save))
+                        .setTitle(getString(R.string.title_alert_save))
+                        .setPositiveButton(getString(R.string.btn_positive), new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {
                                 ean.setText("");
                                 dialog.dismiss();
                             }
                         })
-                        .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                        .setNegativeButton(getString(R.string.btn_negative), new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {
                                 dialog.dismiss();
                             }
@@ -130,9 +130,9 @@ public class AddBook extends Fragment implements LoaderManager.LoaderCallbacks<C
             @Override
             public void onClick(View view) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-                builder.setMessage("Conferma cancellazione")
-                        .setTitle("Cancella")
-                        .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                builder.setMessage(getString(R.string.text_alert_delete))
+                        .setTitle(getString(R.string.title_alert_delete))
+                        .setPositiveButton(getString(R.string.btn_positive), new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {
                                 Intent bookIntent = new Intent(getActivity(), BookService.class);
                                 bookIntent.putExtra(BookService.EAN, ean.getText().toString());
@@ -142,7 +142,7 @@ public class AddBook extends Fragment implements LoaderManager.LoaderCallbacks<C
                                 dialog.dismiss();
                             }
                         })
-                        .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                        .setNegativeButton(getString(R.string.btn_negative), new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {
                                 dialog.dismiss();
                             }

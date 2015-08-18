@@ -1,17 +1,16 @@
 package it.jaschke.alexandria;
 
-import android.support.v7.app.ActionBarActivity;
 import android.app.Activity;
-import android.support.v7.app.ActionBar;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.ActionBarDrawerToggle;
-import android.support.v4.view.GravityCompat;
-import android.support.v4.widget.DrawerLayout;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.util.Log;
+import android.support.v4.app.ActionBarDrawerToggle;
+import android.support.v4.app.Fragment;
+import android.support.v4.view.GravityCompat;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.ActionBarActivity;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -77,7 +76,7 @@ public class NavigationDrawerFragment extends Fragment {
             mFromSavedInstanceState = true;
         }else{
             SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
-            mCurrentSelectedPosition = Integer.parseInt(prefs.getString("pref_startFragment","0"));
+            mCurrentSelectedPosition = Integer.parseInt(prefs.getString(getString(R.string.pref_start_fragment),"0"));
             selectItem(mCurrentSelectedPosition);
         }
 

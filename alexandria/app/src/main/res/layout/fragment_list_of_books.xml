@@ -49,7 +49,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="No books"
+            android:text="@string/empty_book_list"
             android:id="@+id/textview_empty_view"
             android:layout_below="@+id/searchText"
             android:gravity="center_horizontal" />
