@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Menu Items -->
+    <string name="books">Lista Libri</string>
+    <string name="scan">Scannerizza/Aggiungi Libro</string>
+    <string name="about">Informazioni</string>
+
+    <!-- Settings -->
+    <string name="action_settings">Impostazioni</string>
+    <string name="pref_startScreen">Seleziona schermata iniziale</string>
+    <string name="title_activity_settings">Impostazioni</string>
+    <string name="action_share">Condividi</string>
+    <string name="share_text">Consiglio di leggere questo libro: </string>
+
+    <!--Add Book-->
+    <string name="scan_button">Scan</string>
+    <string name="input_hint">Inserisci ISBN-13. Solo numeri.</string>
+    <string name="ok_button">Salva</string>
+    <string name="cancel_button">Elimina</string>
+    <string name="not_found">Nessun libro trovato</string>
+    <string name="title_alert_save">Salva</string>
+    <string name="text_alert_save">Conferma salvataggio</string>
+    <string name="title_alert_delete">Elimina</string>
+    <string name="text_alert_delete">Conferma eliminazione</string>
+    <string name="btn_positive">OK</string>
+    <string name="btn_negative">Annulla</string>
+
+    <!--Book List-->
+    <string name="book_cover">Copertina</string>
+    <string name="empty_book_list">Nessun Libro</string>
+    <string name="back_button">Indietro</string>
+    <string name="delete">Elimina Libro</string>
+
+    <string name="search">Ricerca</string>
+
+    <string name="about_text">This application gets book information from a Google API. All titles, cover images, and author information come from there.
+    The original version of this app was built by Sascha Jaschke, and a modified version is given to students in the Udacity Android Nanodegree program. </string>
+
+    <string name="internet_error_message">Connessione Internet Assente</string>
+</resources>
