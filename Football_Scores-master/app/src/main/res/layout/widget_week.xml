@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
+
+    <RelativeLayout
+        android:id="@+id/widget"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/abc_action_bar_default_height_material"
+        android:background="@color/green13"
+        android:gravity="center_vertical">
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:id="@+id/btn_prev"
+            android:src="@drawable/ic_action_previous_item"
+            android:background="@null"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/title_widget_week"
+            android:textAppearance="@android:style/TextAppearance.Medium"
+            android:text="Today"
+            android:textColor="@color/black"
+            android:layout_centerHorizontal="true" />
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:id="@+id/btn_next"
+            android:layout_alignParentRight="true"
+            android:src="@drawable/ic_action_next_item"
+            android:background="@null"
+            android:layout_height="wrap_content" />
+
+    </RelativeLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ListView
+            android:id="@+id/listview_scores_widget"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:divider="@null"
+            android:dividerHeight="0dp"
+            tools:listitem="@layout/scores_list_item"
+            android:background="@null" />
+
+        <TextView
+            android:id="@+id/widget_empty"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:fontFamily="sans-serif-condensed"
+            android:textAppearance="?android:textAppearanceLarge"
+            android:text="No Scores Available"
+            android:textColor="@color/black" />
+    </FrameLayout>
+</LinearLayout>

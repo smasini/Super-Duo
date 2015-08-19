@@ -34,6 +34,33 @@
                 android:value="barqsoft.footballscores.MainActivity" />
         </activity>
         <service android:name=".service.myFetchService" />
+
+        <!--Widget Today-->
+        <receiver android:name=".widget.TodayScoresWidgetProvider"
+            android:label="@string/title_widget_today">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+                <action android:name="app.nanodegree.masini.simone.footballscores.ACTION_DATA_UPDATED" />
+            </intent-filter>
+            <meta-data android:name="android.appwidget.provider"
+                android:resource="@xml/widget_info_today" />
+        </receiver>
+        <!--Widget Week-->
+        <receiver android:name=".widget.WeekScoresWidgetProvider"
+            android:label="@string/title_widget_week">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+                <action android:name="app.nanodegree.masini.simone.footballscores.ACTION_DATA_UPDATED" />
+                <action android:name="app.nanodegree.masini.simone.footballscores.ACTION_DATA_NEXT" />
+            </intent-filter>
+            <meta-data android:name="android.appwidget.provider"
+                android:resource="@xml/widget_info_week" />
+        </receiver>
+        <service
+            android:name=".widget.TodayScoresWidgetRemoteViewService"
+            android:enabled="true"
+            android:exported="false"
+            android:permission="android.permission.BIND_REMOTEVIEWS" />
     </application>
 
 </manifest>

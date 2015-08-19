@@ -24,6 +24,7 @@ import java.util.Vector;
 
 import barqsoft.footballscores.DatabaseContract;
 import barqsoft.footballscores.R;
+import barqsoft.footballscores.widget.TodayScoresWidgetProvider;
 
 /**
  * Created by yehya khaled on 3/2/2015.
@@ -122,6 +123,11 @@ public class myFetchService extends IntentService
 
 
                 processJSONdata(JSON_data, getApplicationContext(), true);
+
+                // Setting the package ensures that only components in our app will receive the broadcast
+                Intent dataUpdatedIntent = new Intent(TodayScoresWidgetProvider.ACTION_DATA_UPDATED)
+                        .setPackage(this.getPackageName());
+                this.sendBroadcast(dataUpdatedIntent);
             } else {
                 //Could not Connect
                 Log.d(LOG_TAG, "Could not connect to server.");
