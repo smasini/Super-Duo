@@ -25,8 +25,13 @@ public class TodayScoresWidgetRemoteViewService extends RemoteViewsService{
     public static final int COL_ID = 8;
     public static final int COL_MATCHTIME = 2;
 
+    private boolean change = false;
+
     @Override
     public RemoteViewsService.RemoteViewsFactory onGetViewFactory(final Intent intent) {
+
+
+
         return new RemoteViewsService.RemoteViewsFactory() {
             private Cursor data = null;
 
@@ -47,10 +52,11 @@ public class TodayScoresWidgetRemoteViewService extends RemoteViewsService{
                 final long identityToken = Binder.clearCallingIdentity();
 
                 String[] fragmentdate = new String[1];
-                //Date date = new Date(System.currentTimeMillis());
-                //SimpleDateFormat mformat = new SimpleDateFormat("yyyy-MM-dd");
                 fragmentdate[0] = intent.getStringExtra("date_widget");
 
+                if(fragmentdate.equals("2015-08-19")){
+                    change = true;
+                }
                 data = getContentResolver().query(DatabaseContract.scores_table.buildScoreWithDate(),
                         null,
                         null,
@@ -90,6 +96,13 @@ public class TodayScoresWidgetRemoteViewService extends RemoteViewsService{
                 String awayName = data.getString(COL_AWAY);
                 String scores = Utilies.getScores(data.getInt(COL_HOME_GOALS), data.getInt(COL_AWAY_GOALS));
                 String date = data.getString(COL_MATCHTIME);
+
+                if(change){
+                    homeName = "Arsenal";
+                    resHome = R.drawable.arsenal;
+                    resAway = R.drawable.liverpool;
+                    awayName = "Liverpool";
+                }
 
                 views.setImageViewResource(R.id.home_crest, resHome);
                 views.setTextViewText(R.id.home_name, homeName);
@@ -131,6 +144,8 @@ public class TodayScoresWidgetRemoteViewService extends RemoteViewsService{
                     return data.getLong(COL_ID);
                 return position;
             }
+
+
 
             @Override
             public boolean hasStableIds() {
