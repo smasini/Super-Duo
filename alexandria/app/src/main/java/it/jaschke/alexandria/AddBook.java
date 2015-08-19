@@ -163,16 +163,18 @@ public class AddBook extends Fragment implements LoaderManager.LoaderCallbacks<C
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == 0) {
-            mEanString = data.getStringExtra("SCAN_RESULT");
-            String format = data.getStringExtra("SCAN_RESULT_FORMAT");
-            if(format.equals("EAN_13")){
-                mUseScan = true;
-                //Once we have an ISBN, start a book intent
-                Intent bookIntent = new Intent(getActivity(), BookService.class);
-                bookIntent.putExtra(BookService.EAN, mEanString);
-                bookIntent.setAction(BookService.FETCH_BOOK);
-                getActivity().startService(bookIntent);
-                this.restartLoader();
+            if(data!=null && data.hasExtra("SCAN_RESULT")) {
+                mEanString = data.getStringExtra("SCAN_RESULT");
+                String format = data.getStringExtra("SCAN_RESULT_FORMAT");
+                if (format.equals("EAN_13")) {
+                    mUseScan = true;
+                    //Once we have an ISBN, start a book intent
+                    Intent bookIntent = new Intent(getActivity(), BookService.class);
+                    bookIntent.putExtra(BookService.EAN, mEanString);
+                    bookIntent.setAction(BookService.FETCH_BOOK);
+                    getActivity().startService(bookIntent);
+                    this.restartLoader();
+                }
             }
         }
     }
