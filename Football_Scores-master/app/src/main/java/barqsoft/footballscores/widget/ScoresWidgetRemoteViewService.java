@@ -16,7 +16,7 @@ import barqsoft.footballscores.Utilies;
  * Package: barqsoft.footballscores.widget
  * Created by Simone Masini on 19/08/2015 at 15.06.
  */
-public class TodayScoresWidgetRemoteViewService extends RemoteViewsService{
+public class ScoresWidgetRemoteViewService extends RemoteViewsService{
 
     public static final int COL_HOME = 3;
     public static final int COL_AWAY = 4;
@@ -25,12 +25,8 @@ public class TodayScoresWidgetRemoteViewService extends RemoteViewsService{
     public static final int COL_ID = 8;
     public static final int COL_MATCHTIME = 2;
 
-    private boolean change = false;
-
     @Override
     public RemoteViewsService.RemoteViewsFactory onGetViewFactory(final Intent intent) {
-
-
 
         return new RemoteViewsService.RemoteViewsFactory() {
             private Cursor data = null;
@@ -45,18 +41,10 @@ public class TodayScoresWidgetRemoteViewService extends RemoteViewsService{
                 if (data != null) {
                     data.close();
                 }
-                // This method is called by the app hosting the widget (e.g., the launcher)
-                // However, our ContentProvider is not exported so it doesn't have access to the
-                // data. Therefore we need to clear (and finally restore) the calling identity so
-                // that calls use our process and permission
                 final long identityToken = Binder.clearCallingIdentity();
 
                 String[] fragmentdate = new String[1];
                 fragmentdate[0] = intent.getStringExtra("date_widget");
-
-                if(fragmentdate.equals("2015-08-19")){
-                    change = true;
-                }
                 data = getContentResolver().query(DatabaseContract.scores_table.buildScoreWithDate(),
                         null,
                         null,
@@ -97,13 +85,6 @@ public class TodayScoresWidgetRemoteViewService extends RemoteViewsService{
                 String scores = Utilies.getScores(data.getInt(COL_HOME_GOALS), data.getInt(COL_AWAY_GOALS));
                 String date = data.getString(COL_MATCHTIME);
 
-                if(change){
-                    homeName = "Arsenal";
-                    resHome = R.drawable.arsenal;
-                    resAway = R.drawable.liverpool;
-                    awayName = "Liverpool";
-                }
-
                 views.setImageViewResource(R.id.home_crest, resHome);
                 views.setTextViewText(R.id.home_name, homeName);
                 views.setTextViewText(R.id.score_textview, scores);
@@ -111,14 +92,6 @@ public class TodayScoresWidgetRemoteViewService extends RemoteViewsService{
                 views.setImageViewResource(R.id.away_crest, resAway);
                 views.setTextViewText(R.id.away_name, awayName);
 
-                /*final Intent fillInIntent = new Intent();
-                String locationSetting =
-                        Utility.getPreferredLocation(DetailWidgetRemoteViewsService.this);
-                Uri weatherUri = WeatherContract.WeatherEntry.buildWeatherLocationWithDate(
-                        locationSetting,
-                        dateInMillis);
-                fillInIntent.setData(weatherUri);
-                views.setOnClickFillInIntent(R.id.widget_list_item, fillInIntent);*/
                 return views;
             }
 

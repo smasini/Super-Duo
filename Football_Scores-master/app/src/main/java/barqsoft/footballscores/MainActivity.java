@@ -7,6 +7,8 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import java.util.Date;
+
 public class MainActivity extends ActionBarActivity
 {
     public static int selected_match_id;
@@ -17,12 +19,31 @@ public class MainActivity extends ActionBarActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        Intent intent = getIntent();
+        getCurrentFragment(intent.getLongExtra("current_fragment", System.currentTimeMillis()));
         if (savedInstanceState == null) {
             my_main = new PagerFragment();
             getSupportFragmentManager().beginTransaction()
                     .add(R.id.container, my_main)
                     .commit();
         }
+    }
+
+    public void getCurrentFragment(long timesInMills){
+        Date today = new Date(System.currentTimeMillis());
+        today.setHours(0);
+        today.setMinutes(0);
+        today.setSeconds(0);
+        Date date = new Date(timesInMills);
+        date.setHours(0);
+        date.setMinutes(0);
+        date.setSeconds(0);
+        long startTime = today.getTime();
+        long endTime = date.getTime();
+        long diffTime = endTime - startTime;
+        long diffDays = diffTime / (1000 * 60 * 60 * 24);
+        int index = ((int) (diffDays) + 2 );
+        current_fragment = index;
     }
 
 

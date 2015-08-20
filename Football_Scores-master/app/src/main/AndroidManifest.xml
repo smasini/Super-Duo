@@ -52,12 +52,13 @@
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
                 <action android:name="app.nanodegree.masini.simone.footballscores.ACTION_DATA_UPDATED" />
                 <action android:name="app.nanodegree.masini.simone.footballscores.ACTION_DATA_NEXT" />
+                <action android:name="app.nanodegree.masini.simone.footballscores.ACTION_DATA_PREV" />
             </intent-filter>
             <meta-data android:name="android.appwidget.provider"
                 android:resource="@xml/widget_info_week" />
         </receiver>
         <service
-            android:name=".widget.TodayScoresWidgetRemoteViewService"
+            android:name=".widget.ScoresWidgetRemoteViewService"
             android:enabled="true"
             android:exported="false"
             android:permission="android.permission.BIND_REMOTEVIEWS" />
