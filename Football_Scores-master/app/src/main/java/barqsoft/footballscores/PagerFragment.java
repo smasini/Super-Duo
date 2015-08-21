@@ -57,6 +57,7 @@ public class PagerFragment extends Fragment
         {
             super(fm);
         }
+
         // Returns the page title for the top indicator
         @Override
         public CharSequence getPageTitle(int position)

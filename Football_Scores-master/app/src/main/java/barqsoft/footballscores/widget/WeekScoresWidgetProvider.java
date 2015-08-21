@@ -72,6 +72,8 @@ public class WeekScoresWidgetProvider extends AppWidgetProvider {
         }
 
         views.setTextViewText(R.id.title_widget_week, Utilies.getDayName(context, dateInTimes));
+        setRemoteContentDescription(views, R.id.title_widget_week, Utilies.getDayName(context, dateInTimes));
+
         views.setEmptyView(R.id.listview_scores_widget, R.id.widget_empty);
 
         Bundle extras = new Bundle();
@@ -94,6 +96,11 @@ public class WeekScoresWidgetProvider extends AppWidgetProvider {
         views.setOnClickPendingIntent(R.id.btn_prev, pendingIntentPrev);
 
         return views;
+    }
+
+    @TargetApi(Build.VERSION_CODES.ICE_CREAM_SANDWICH_MR1)
+    private void setRemoteContentDescription(RemoteViews views, int res, String description) {
+        views.setContentDescription(res, description);
     }
 
     public void updateWidget(Context context){

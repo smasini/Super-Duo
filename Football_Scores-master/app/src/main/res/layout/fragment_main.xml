@@ -21,5 +21,6 @@
         android:gravity="center"
         android:fontFamily="sans-serif-condensed"
         android:textAppearance="?android:textAppearanceLarge"
+        android:contentDescription="@string/no_scores_available"
         android:text="@string/no_scores_available" />
 </FrameLayout>

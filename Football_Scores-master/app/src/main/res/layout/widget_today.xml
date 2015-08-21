@@ -17,6 +17,7 @@
             android:layout_gravity="center"
             android:textAppearance="@android:style/TextAppearance.Medium"
             android:text="@string/today"
+            android:contentDescription="@string/today"
             android:textColor="@color/black" />
     </FrameLayout>
 
@@ -41,6 +42,7 @@
             android:fontFamily="sans-serif-condensed"
             android:textAppearance="?android:textAppearanceLarge"
             android:text="@string/no_scores_available"
+            android:contentDescription="@string/no_scores_available"
             android:textColor="@color/black" />
     </FrameLayout>
 </LinearLayout>

@@ -1,8 +1,10 @@
 package barqsoft.footballscores.widget;
 
+import android.annotation.TargetApi;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Binder;
+import android.os.Build;
 import android.widget.AdapterView;
 import android.widget.RemoteViews;
 import android.widget.RemoteViewsService;
@@ -92,14 +94,21 @@ public class ScoresWidgetRemoteViewService extends RemoteViewsService{
                 views.setImageViewResource(R.id.away_crest, resAway);
                 views.setTextViewText(R.id.away_name, awayName);
 
+                setRemoteContentDescription(views, R.id.home_crest, getString(R.string.logo) + " " + homeName);
+                setRemoteContentDescription(views, R.id.home_name, homeName);
+                setRemoteContentDescription(views, R.id.away_crest, getString(R.string.logo) + " " + awayName);
+                setRemoteContentDescription(views, R.id.away_name, awayName);
+                setRemoteContentDescription(views, R.id.score_textview, scores);
+                setRemoteContentDescription(views, R.id.data_textview, date);
+
                 return views;
             }
 
-            /*
+
             @TargetApi(Build.VERSION_CODES.ICE_CREAM_SANDWICH_MR1)
-            private void setRemoteContentDescription(RemoteViews views, String description) {
-                views.setContentDescription(R.id.widget_icon, description);
-            }*/
+            private void setRemoteContentDescription(RemoteViews views, int res, String description) {
+                views.setContentDescription(res, description);
+            }
 
             @Override
             public RemoteViews getLoadingView() {
