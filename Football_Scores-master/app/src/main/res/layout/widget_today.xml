@@ -16,7 +16,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:textAppearance="@android:style/TextAppearance.Medium"
-            android:text="Today"
+            android:text="@string/today"
             android:textColor="@color/black" />
     </FrameLayout>
 
@@ -40,7 +40,7 @@
             android:gravity="center"
             android:fontFamily="sans-serif-condensed"
             android:textAppearance="?android:textAppearanceLarge"
-            android:text="No Scores Available"
+            android:text="@string/no_scores_available"
             android:textColor="@color/black" />
     </FrameLayout>
 </LinearLayout>

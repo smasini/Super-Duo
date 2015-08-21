@@ -61,9 +61,9 @@ public class TodayScoresWidgetProvider extends AppWidgetProvider {
     @TargetApi(Build.VERSION_CODES.ICE_CREAM_SANDWICH)
     private void setRemoteAdapter(Context context, @NonNull final RemoteViews views) {
         Date date = new Date(System.currentTimeMillis());
-        SimpleDateFormat mformat = new SimpleDateFormat("yyyy-MM-dd");
+        SimpleDateFormat mformat = new SimpleDateFormat(context.getString(R.string.format_date_only));
         Intent intent = new Intent(context, ScoresWidgetRemoteViewService.class);
-        intent.putExtra("date_widget", mformat.format(date));
+        intent.putExtra(context.getString(R.string.extra_date_widget), mformat.format(date));
         views.setRemoteAdapter(R.id.listview_scores_widget,intent);
     }
 
@@ -75,9 +75,9 @@ public class TodayScoresWidgetProvider extends AppWidgetProvider {
     @SuppressWarnings("deprecation")
     private void setRemoteAdapterV11(Context context, @NonNull final RemoteViews views) {
         Date date = new Date(System.currentTimeMillis());
-        SimpleDateFormat mformat = new SimpleDateFormat("yyyy-MM-dd");
+        SimpleDateFormat mformat = new SimpleDateFormat(context.getString(R.string.format_date_only));
         Intent intent = new Intent(context, ScoresWidgetRemoteViewService.class);
-        intent.putExtra("date_widget", mformat.format(date));
+        intent.putExtra(context.getString(R.string.extra_date_widget), mformat.format(date));
         views.setRemoteAdapter(0, R.id.listview_scores_widget,intent);
     }
 }

@@ -44,7 +44,7 @@ public class ScoresWidgetRemoteViewService extends RemoteViewsService{
                 final long identityToken = Binder.clearCallingIdentity();
 
                 String[] fragmentdate = new String[1];
-                fragmentdate[0] = intent.getStringExtra("date_widget");
+                fragmentdate[0] = intent.getStringExtra(getApplicationContext().getString(R.string.extra_date_widget));
                 data = getContentResolver().query(DatabaseContract.scores_table.buildScoreWithDate(),
                         null,
                         null,

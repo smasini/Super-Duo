@@ -50,14 +50,14 @@ public class WeekScoresWidgetProvider extends AppWidgetProvider {
                     new ComponentName(context, getClass()));
             appWidgetManager.notifyAppWidgetViewDataChanged(appWidgetIds, R.id.listview_scores_widget);
         }else if(ACTION_DATA_NEXT.equals(intent.getAction())){
-            Bundle extra = intent.getBundleExtra("extras_key");
-            dateInTimes = extra.getLong("date_in_times", 0);
-            changeDate(1);
+            Bundle extra = intent.getBundleExtra(context.getString(R.string.extra_bundle_action_key));
+            dateInTimes = extra.getLong(context.getString(R.string.extra_long_date_in_mills_key), 0);
+            changeDate(1, context);
             updateWidget(context);
         }else if(ACTION_DATA_PREV.equals(intent.getAction())){
-            Bundle extra = intent.getBundleExtra("extras_key");
-            dateInTimes = extra.getLong("date_in_times", 0);
-            changeDate(-1);
+            Bundle extra = intent.getBundleExtra(context.getString(R.string.extra_bundle_action_key));
+            dateInTimes = extra.getLong(context.getString(R.string.extra_long_date_in_mills_key), 0);
+            changeDate(-1, context);
             updateWidget(context);
         }
     }
@@ -75,21 +75,21 @@ public class WeekScoresWidgetProvider extends AppWidgetProvider {
         views.setEmptyView(R.id.listview_scores_widget, R.id.widget_empty);
 
         Bundle extras = new Bundle();
-        extras.putLong("date_in_times", dateInTimes);
+        extras.putLong(context.getString(R.string.extra_long_date_in_mills_key), dateInTimes);
 
         Intent intent = new Intent(context, MainActivity.class);
-        intent.putExtra("current_fragment", dateInTimes);
+        intent.putExtra(context.getString(R.string.extra_current_fragment_key), dateInTimes);
         intent.setData(Uri.parse(intent.toUri(Intent.URI_INTENT_SCHEME)));
         PendingIntent pendingIntent = PendingIntent.getActivity(context, appWidgetId + 1, intent, 0);
         views.setOnClickPendingIntent(R.id.widget, pendingIntent);
 
         Intent intentNext = new Intent(WeekScoresWidgetProvider.ACTION_DATA_NEXT)
-                .putExtra("extras_key", extras);
+                .putExtra(context.getString(R.string.extra_bundle_action_key), extras);
         PendingIntent pendingIntentNext = PendingIntent.getBroadcast(context, appWidgetId, intentNext, PendingIntent.FLAG_UPDATE_CURRENT);
         views.setOnClickPendingIntent(R.id.btn_next, pendingIntentNext);
 
         Intent intentPrev = new Intent(WeekScoresWidgetProvider.ACTION_DATA_PREV)
-                .putExtra("extras_key", extras);
+                .putExtra(context.getString(R.string.extra_bundle_action_key), extras);
         PendingIntent pendingIntentPrev = PendingIntent.getBroadcast(context, appWidgetId, intentPrev, PendingIntent.FLAG_UPDATE_CURRENT);
         views.setOnClickPendingIntent(R.id.btn_prev, pendingIntentPrev);
 
@@ -112,7 +112,7 @@ public class WeekScoresWidgetProvider extends AppWidgetProvider {
     @TargetApi(Build.VERSION_CODES.ICE_CREAM_SANDWICH)
     private void setRemoteAdapter(Context context, @NonNull final RemoteViews views) {
         Intent intent = new Intent(context, ScoresWidgetRemoteViewService.class);
-        intent.putExtra("date_widget", getStringDate());
+        intent.putExtra(context.getString(R.string.extra_date_widget), getStringDate(context));
         intent.setData(Uri.parse(intent.toUri(Intent.URI_INTENT_SCHEME)));
         views.setRemoteAdapter(R.id.listview_scores_widget, intent);
     }
@@ -120,29 +120,29 @@ public class WeekScoresWidgetProvider extends AppWidgetProvider {
     @SuppressWarnings("deprecation")
     private void setRemoteAdapterV11(Context context, @NonNull final RemoteViews views) {
         Intent intent = new Intent(context, ScoresWidgetRemoteViewService.class);
-        intent.putExtra("date_widget", getStringDate());
+        intent.putExtra(context.getString(R.string.extra_date_widget), getStringDate(context));
         intent.setData(Uri.parse(intent.toUri(Intent.URI_INTENT_SCHEME)));
         views.setRemoteAdapter(0, R.id.listview_scores_widget,intent);
     }
 
-    public String getStringDate(){
+    public String getStringDate(Context context){
         if(date.equals("")){
             dateInTimes = System.currentTimeMillis();
-            getDate(dateInTimes);
+            getDate(dateInTimes, context);
         }
         return date;
     }
 
-    public void changeDate(int i){
+    public void changeDate(int i, Context context){
         dateInTimes = dateInTimes+((i)*86400000);
-        getDate(dateInTimes);
-        getStringDate();
+        getDate(dateInTimes, context);
+        getStringDate(context);
     }
 
-    public void getDate(long dateInTimes){
+    public void getDate(long dateInTimes, Context context){
         Date date = new Date(dateInTimes);
         this.dateInTimes = date.getTime();
-        SimpleDateFormat mformat = new SimpleDateFormat("yyyy-MM-dd");
+        SimpleDateFormat mformat = new SimpleDateFormat(context.getString(R.string.format_date_only));
         this.date = mformat.format(date);
     }
 }

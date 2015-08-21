@@ -14,4 +14,12 @@
             android:divider="@android:color/transparent"
             android:dividerHeight="15sp"
             />
+    <TextView
+        android:id="@+id/list_empty"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:fontFamily="sans-serif-condensed"
+        android:textAppearance="?android:textAppearanceLarge"
+        android:text="@string/no_scores_available" />
 </FrameLayout>

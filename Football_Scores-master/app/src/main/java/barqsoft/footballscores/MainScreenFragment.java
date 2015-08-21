@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import barqsoft.footballscores.service.myFetchService;
 
@@ -44,8 +45,10 @@ public class MainScreenFragment extends Fragment implements LoaderManager.Loader
         update_scores();
         View rootView = inflater.inflate(R.layout.fragment_main, container, false);
         final ListView score_list = (ListView) rootView.findViewById(R.id.scores_list);
+        TextView emptyView = (TextView) rootView.findViewById(R.id.list_empty);
         mAdapter = new scoresAdapter(getActivity(),null,0);
         score_list.setAdapter(mAdapter);
+        score_list.setEmptyView(emptyView);
         getLoaderManager().initLoader(SCORES_LOADER,null,this);
         mAdapter.detail_match_id = MainActivity.selected_match_id;
         score_list.setOnItemClickListener(new AdapterView.OnItemClickListener()
