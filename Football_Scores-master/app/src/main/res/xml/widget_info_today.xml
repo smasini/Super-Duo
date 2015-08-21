@@ -8,10 +8,8 @@
     android:minResizeHeight="@dimen/widget_today_min_resize_height"
     android:minResizeWidth="@dimen/widget_today_min_resize_width"
     android:updatePeriodMillis="86400000"
-
     android:resizeMode="horizontal|vertical"
     android:widgetCategory="home_screen|keyguard"
     tools:ignore="UnusedAttribute"
     />
 
-    <!--android:previewImage="@drawable/widget_preview_today"-->
