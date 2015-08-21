@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Football Scores</string>
+
+    <string name="format_date_only">dd-MM-yyyy</string>
+    <string name="format_date_time">dd-MM-yyyy:HH:mm</string>
+    <string name="today">Oggi</string>
+    <string name="yesterday">Ieri</string>
+    <string name="tomorrow">Domani</string>
+
+    <!-- Utilies getMatchDay-->
+    <string name="matchday_text">Giorno della partita</string>
+    <string name="group_stage_text">Gruppo</string>
+    <string name="first_knockout_round">Ottavi di Finale</string>
+    <string name="quarter_final">Quarti di Finale</string>
+    <string name="semi_final">Semi Finale</string>
+    <string name="final_text">Finale</string>
+    <!-- Utilies getLeague-->
+    <string name="champions_league">UEFA Champions League</string>
+    <string name="bundesliga">Bundesliga</string>
+    <string name="premierleague">Premier League</string>
+    <string name="primeradivison">Primera Division</string>
+    <string name="seriaa">Serie A</string>
+    <string name="not_know_league">Nessuna Lega conosciuta, Segnala per favore</string>
+
+    <string name="share_text">Condividi</string>
+    <string name="about">Informazioni</string>
+    <string name="logo">Stemma</string>
+
+    <string name="about_text">
+        This Application get Football Matches Score for the Premier League,Seria A,Bundesliga,Primera Division
+        and the Uefa Champions League.
+        All Matches data are acquired from football-data.org free API.
+        All team Logos are acquired from http://hdlogo.wordpress.com/ upon requesting permission form the owner.
+        The original version of this app was created by Yahia Khalid Ibn El Walid Ahmed, and a modified version is given to students in the Udacity Android Nanodegree program.
+        To report any bugs,or suggestions do not hesitate to send a mail to y.k.ibnelwalid@gmail.com.
+
+        During the off season, fake data will be added to the app.
+    </string>
+
+    <!--Widget-->
+    <string name="title_widget_today">Risultati di Oggi</string>
+    <string name="title_widget_week">Risultati della Settimana</string>
+    <string name="no_scores_available">Nessun risultato disponibile</string>
+    <string name="next_day_description">Prossimo Giorno</string>
+    <string name="prev_day_description">Giorno Precedente</string>
+
+</resources>
