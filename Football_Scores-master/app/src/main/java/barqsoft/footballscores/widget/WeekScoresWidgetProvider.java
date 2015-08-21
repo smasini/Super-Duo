@@ -65,8 +65,6 @@ public class WeekScoresWidgetProvider extends AppWidgetProvider {
     public RemoteViews generateRemoteViews(Context context, int appWidgetId){
         RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.widget_week);
 
-
-
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH) {
             setRemoteAdapter(context, views);
         } else {
@@ -143,9 +141,6 @@ public class WeekScoresWidgetProvider extends AppWidgetProvider {
 
     public void getDate(long dateInTimes){
         Date date = new Date(dateInTimes);
-        date.setHours(0);
-        date.setMinutes(0);
-        date.setSeconds(0);
         this.dateInTimes = date.getTime();
         SimpleDateFormat mformat = new SimpleDateFormat("yyyy-MM-dd");
         this.date = mformat.format(date);

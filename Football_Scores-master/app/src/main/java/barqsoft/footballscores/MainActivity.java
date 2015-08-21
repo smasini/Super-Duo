@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import java.util.Calendar;
 import java.util.Date;
 
 public class MainActivity extends ActionBarActivity
@@ -31,19 +32,38 @@ public class MainActivity extends ActionBarActivity
 
     public void getCurrentFragment(long timesInMills){
         Date today = new Date(System.currentTimeMillis());
-        today.setHours(0);
-        today.setMinutes(0);
-        today.setSeconds(0);
         Date date = new Date(timesInMills);
-        date.setHours(0);
-        date.setMinutes(0);
-        date.setSeconds(0);
-        long startTime = today.getTime();
-        long endTime = date.getTime();
-        long diffTime = endTime - startTime;
-        long diffDays = diffTime / (1000 * 60 * 60 * 24);
-        int index = ((int) (diffDays) + 2 );
-        current_fragment = index;
+        int index = calculateDifference(today, date);
+        current_fragment = index + 2;
+    }
+
+    public static int calculateDifference(Date a, Date b)
+    {
+        int tempDifference = 0;
+        int difference = 0;
+        Calendar earlier = Calendar.getInstance();
+        Calendar later = Calendar.getInstance();
+
+        earlier.setTime(a);
+        later.setTime(b);
+
+        while (earlier.get(Calendar.YEAR) != later.get(Calendar.YEAR))
+        {
+            tempDifference = 365 * (later.get(Calendar.YEAR) - earlier.get(Calendar.YEAR));
+            difference += tempDifference;
+
+            earlier.add(Calendar.DAY_OF_YEAR, tempDifference);
+        }
+
+        if (earlier.get(Calendar.DAY_OF_YEAR) != later.get(Calendar.DAY_OF_YEAR))
+        {
+            tempDifference = later.get(Calendar.DAY_OF_YEAR) - earlier.get(Calendar.DAY_OF_YEAR);
+            difference += tempDifference;
+
+            earlier.add(Calendar.DAY_OF_YEAR, tempDifference);
+        }
+
+        return difference;
     }
 
 
