@@ -46,7 +46,7 @@
     <string name="prev_day_description">Previous Day</string>
 
     <!--Non translatable strings-->
-    <string name="api_key" translatable="false"> 69ff78ed484c486999ca384bc09ce7db</string>
+    <string name="api_key" translatable="false">Insert your api key here</string>
     <string name="extra_date_widget" translatable="false">date_widget</string>
     <string name="extra_bundle_action_key" translatable="false">extra_bundle_action_key</string>
     <string name="extra_long_date_in_mills_key" translatable="false">date_in_times</string>
