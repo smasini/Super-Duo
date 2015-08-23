@@ -74,8 +74,9 @@ public class AddBook extends Fragment implements LoaderManager.LoaderCallbacks<C
                 //catch isbn10 numbers
                 if(ean.length()==10 && !ean.startsWith("978")){
                     ean="978"+ean;
+                    AddBook.this.ean.setText(ean);
                 }
-                if(ean.length()<10){
+                if(ean.length()<13){
                     clearFields();
                     return;
                 }
@@ -167,6 +168,7 @@ public class AddBook extends Fragment implements LoaderManager.LoaderCallbacks<C
                 mEanString = data.getStringExtra("SCAN_RESULT");
                 String format = data.getStringExtra("SCAN_RESULT_FORMAT");
                 if (format.equals("EAN_13")) {
+                    ean.setText(mEanString);
                     mUseScan = true;
                     //Once we have an ISBN, start a book intent
                     Intent bookIntent = new Intent(getActivity(), BookService.class);
