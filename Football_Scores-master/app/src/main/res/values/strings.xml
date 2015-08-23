@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Football Scores</string>
+    <string name="is_rtl">false</string>
 
     <string name="format_date_only">yyyy-MM-dd</string>
     <string name="format_date_time">yyyy-MM-dd:HH:mm</string>
